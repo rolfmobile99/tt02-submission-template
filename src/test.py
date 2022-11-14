@@ -20,7 +20,7 @@ alu_values =    [  0,  0,   0, 0x7, 0xf, 0x0 ]
 async def test_alu_fsm(dut):
     dut._log.info("start")
     clock = Clock(dut.clk, 10, units="us")
-    cocotb.fork(clock.start())
+    cocotb.start_soon(clock.start())
     
     dut._log.info("reset")
     dut.rst.value = 1
