@@ -3,8 +3,8 @@ from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, FallingEdge, Timer, ClockCycles
 
 # simple test - cycle through states S1 to S4, back to S1
-datain_values = [  0, 0x7, 0x8, 0x1, 0x0 ]
-alu_values =    [  0,   0, 0x7, 0xf, 0xf ]
+datain_values = [  0,  0, 0x7, 0x8, 0x1, 0x0 ]
+alu_values =    [  0,  0,   0, 0x7, 0xf, 0xf ]
 
 # DUT requires the following inputs:
 #   - clk
@@ -30,7 +30,7 @@ async def test_alu_fsm(dut):
     dut.datain.value = 0x0       # alters state machine on each clk cycle
 
     dut._log.info("check alu output values")
-    for i in range(5):
+    for i in range(6):
         dut._log.info("check alu for cycle {}".format(i))
 
         dut.datain.value = datain_values[i]
@@ -39,6 +39,6 @@ async def test_alu_fsm(dut):
 
         await ClockCycles(dut.clk, 1)
 
-        dut._log.info("   alu result {}".format(dut.alu.value))
+        dut._log.info("   alu result {} (expected {})".format(dut.alu.value), alu_values[i])
 
         ##assert int(dut.alu.value) == alu_values[i]
