@@ -4,7 +4,7 @@ from cocotb.triggers import RisingEdge, FallingEdge, Timer, ClockCycles
 
 # simple test - cycle through states S1 to S4, back to S1
 datain_values = [  0,  0, 0x7, 0x8, 0x1, 0x0 ]
-alu_values =    [  0,  0,   0, 0x7, 0xf, 0xf ]
+alu_values =    [  0,  0,   0, 0x7, 0xf, 0x0 ]
 
 # DUT requires the following inputs:
 #   - clk
@@ -41,4 +41,4 @@ async def test_alu_fsm(dut):
 
         dut._log.info("   alu result {} (expected {})".format(dut.alu.value, alu_values[i]))
 
-        ##assert int(dut.alu.value) == alu_values[i]
+        assert int(dut.alu.value) == alu_values[i]
