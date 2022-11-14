@@ -19,27 +19,27 @@ documentation:
   title:        "4-bit badge ALU"      # Project title
   description:  "A 4-bit ALU inspired by Supercon.6 badge"      # Short description of what your project does
   how_it_works: "finite state machine with combinational logic (in verilog)"      # Longer description of how the project works
-  how_to_test:  "TBD"      # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
+  how_to_test:  "cocotb"      # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
   external_hw:  ""      # Describe any external hardware needed
-  language:     "wokwi" # other examples include Verilog, Amaranth, VHDL, etc
+  language:     "verilog" # other examples include Verilog, Amaranth, VHDL, etc
   doc_link:     ""      # URL to longer form documentation, eg the README.md in your repository
   clock_hz:     0       # Clock frequency in Hz (if required)
   picture:      ""      # relative path to a picture in your repository
-  inputs:               # a description of what the inputs do
-    - clock
-    - reset
+  inputs:               # input pins 7-0 (e.g. clk is pin 7)
+    - clk
+    - rst
     - ctl
     - none
-    - data0
-    - data1
-    - data2
-    - data3
-  outputs:
-    - acc0         # a description of what the outputs do
-    - acc1
-    - acc2
-    - acc3
+    - datain3
+    - datain2
+    - datain1
+    - datain0
+  outputs:              # a description of what the outputs do
+    - none
+    - none
+    - none
     - cout
-    - none
-    - none
-    - none
+    - alu3
+    - alu2
+    - alu1
+    - alu0
