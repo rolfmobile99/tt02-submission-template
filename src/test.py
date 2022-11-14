@@ -8,7 +8,7 @@ alu_values =    [  0,   0, 0x7, 0xf, 0xf ]
 
 # DUT requires the following inputs:
 #   - clk
-#   - reset
+#   - rst
 #   - ctl
 #
 # and outputs:
@@ -23,9 +23,9 @@ async def test_alu_fsm(dut):
     cocotb.fork(clock.start())
     
     dut._log.info("reset")
-    dut.reset.value = 1
+    dut.rst.value = 1
     await ClockCycles(dut.clk, 10)
-    dut.reset.value = 0
+    dut.rst.value = 0
     dut.ctl.value = 1       # alters state machine on each clk cycle
 
     dut._log.info("check alu output values")
