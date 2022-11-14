@@ -9,14 +9,14 @@ module rolfmobile99_alu_fsm_top(
   output [7:0] io_out
 );
 
-  wire clk = io_in[0];
-  wire reset = io_in[1];
-  wire ctl_in = io_in[2];
-  wire notused = io_in[3];
-  wire [3:0] databus = io_in[7:4];
+  wire clk = io_in[7];
+  wire reset = io_in[6];
+  wire ctl_in = io_in[5];
+  wire notused = io_in[4];
+  wire [3:0] databus = io_in[3:0];
 
-  assign io_out[3:0] = aluOut[3:0];
   assign io_out[4] = aluCout;
+  assign io_out[3:0] = aluOut[3:0];
 
   wire [2:0] state_out;
   wire enA, enB, enM, enC, selC;

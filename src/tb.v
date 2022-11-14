@@ -10,7 +10,10 @@ module tb (
     // testbench is controlled by test.py
     input clk,
     input rst,
-    output [6:0] segments
+    input ctl,
+    input [3:0] datain,
+    output [3:0] alu,
+    output cout
    );
 
     // this part dumps the trace to a vcd file that can be viewed with GTKWave
@@ -21,12 +24,15 @@ module tb (
     end
 
     // wire up the inputs and outputs
-    wire [7:0] inputs = {6'b0, rst, clk};
+    //wire [7:0] inputs = {datain[3:0], 1'b0, ctl, rst, clk};
+    wire [7:0] inputs = {clk, rst, ctl, 1'b0, datain[3:0]};
     wire [7:0] outputs;
-    assign segments = outputs[6:0];
+
+    assign alu = outputs[3:0];
+    assign cout = outputs[4];
 
     // instantiate the DUT
-    seven_segment_seconds #(.MAX_COUNT(100)) seven_segment_seconds(
+    rolfmobile99_alu_fsm_top alu_fsm_top(
         .io_in  (inputs),
         .io_out (outputs)
         );
