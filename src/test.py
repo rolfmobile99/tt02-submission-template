@@ -27,12 +27,16 @@ async def test_alu_fsm(dut):
     await ClockCycles(dut.clk, 10)
     dut.rst.value = 0
     dut.ctl.value = 1       # alters state machine on each clk cycle
+    dut.datain.value = 0x0       # alters state machine on each clk cycle
 
     dut._log.info("check alu output values")
     for i in range(5):
         dut._log.info("check alu for cycle {}".format(i))
-        await ClockCycles(dut.clk, 1)
+
+        dut.datain.value = datain_values[i]
         if i == 3:
             dut.ctl.value = 0       # on S4, want to go back to S1 (set ctl = 0)
+
+        await ClockCycles(dut.clk, 1)
 
         assert int(dut.alu.value) == alu_values[i]
