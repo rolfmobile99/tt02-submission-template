@@ -39,6 +39,6 @@ async def test_alu_fsm(dut):
 
         await ClockCycles(dut.clk, 1)
 
-        dut._log.info("   alu result {} (expected {})".format(dut.alu.value), alu_values[i])
+        dut._log.info("   alu result {} (expected {})".format(dut.alu.value, alu_values[i]))
 
         ##assert int(dut.alu.value) == alu_values[i]
