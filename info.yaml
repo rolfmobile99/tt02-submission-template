@@ -15,7 +15,7 @@ project:
 # This info will be automatically collected and used to make a datasheet for the chip.
 documentation:
   author:       "Rolf Widenfelt"      # Your name
-  discord:      "?"      # Your discord handle
+  discord:      ""      # Your discord handle
   title:        "4-bit badge ALU"      # Project title
   description:  "A 4-bit ALU inspired by Supercon.6 badge"      # Short description of what your project does
   how_it_works: "finite state machine with combinational logic (in verilog)"      # Longer description of how the project works
